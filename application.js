@@ -12,4 +12,4 @@ mongo(configuration.mongoURL).then(() => {
     application.listen(configuration.port, () => {
         console.log(`Сервер был успешно запущен на порте ${configuration.port}!`);
     });
-})
+});
