@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LoginPage from '../pages/LoginPage';
+import LoginPage from './pages/LoginPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 class Routes extends React.Component {
@@ -15,7 +15,7 @@ class Routes extends React.Component {
         if (this.state.isAuthorized) {
             return(
                 <Switch>
-
+                    
                 </Switch>
             );
         };
@@ -29,6 +29,6 @@ class Routes extends React.Component {
             </Switch>
         );
     };
-}
+};
 
 export default Routes;
