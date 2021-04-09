@@ -14,6 +14,24 @@ import Checkbox from '@material-ui/core/Checkbox';
 import '../css/RegistrationPage.css';
 
 class RegistrationPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            firstName: '',
+            lastName: '',
+            password: '',
+            email: ''
+        };
+    };
+
+    handleChange = (event) => {
+        this.setState({
+            ...this.state,
+            [event.target.name]: event.target.value
+        });
+    };
+
     render() {
         return(
             <Grid container component={'main'} className={'registration-content'}>
@@ -39,6 +57,7 @@ class RegistrationPage extends React.Component {
                                         id={'firstName'}
                                         label={'Имя'}
                                         autoFocus
+                                        onChange={(event) => this.handleChange(event)}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -50,6 +69,7 @@ class RegistrationPage extends React.Component {
                                         label={'Фамилия'}
                                         name={'lastName'}
                                         autoComplete={'lname'}
+                                        onChange={(event) => this.handleChange(event)}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -61,6 +81,7 @@ class RegistrationPage extends React.Component {
                                         label={'Электронная почта'}
                                         name={'email'}
                                         autoComplete={'email'}
+                                        onChange={(event) => this.handleChange(event)}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -73,6 +94,7 @@ class RegistrationPage extends React.Component {
                                         label={'Пароль'}
                                         name={'password'}
                                         autoComplete={'password'}
+                                        onChange={(event) => this.handleChange(event)}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>

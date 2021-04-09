@@ -13,6 +13,22 @@ import '../css/LoginPage.css';
 import { Link } from '@material-ui/core';
 
 class LoginPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: ''
+        };
+    };
+
+    handleChange = (event) => {
+        this.setState({
+            ...this.state,
+            [event.target.name]: event.target.value
+        });
+    };
+
     render() {
         return(
             <Grid container component={'main'} className={'registration-content'}>
@@ -37,6 +53,7 @@ class LoginPage extends React.Component {
                                         label={'Электронная почта'}
                                         name={'email'}
                                         autoComplete={'email'}
+                                        onChange={(event) => this.handleChange(event)}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -49,6 +66,7 @@ class LoginPage extends React.Component {
                                         label={'Пароль'}
                                         name={'password'}
                                         autoComplete={'password'}
+                                        onChange={(event) => this.handleChange(event)}
                                     />
                                 </Grid>
                             </Grid>
