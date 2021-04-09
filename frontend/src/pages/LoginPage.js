@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import '../css/LoginPage.css';
+import { Link } from '@material-ui/core';
 
 class LoginPage extends React.Component {
     render() {
@@ -62,11 +63,16 @@ class LoginPage extends React.Component {
                                 Авторизоваться
                             </Button>    
                         </form>
+                        <Grid item xs={12}>
+                            <p className={'registration-message'}>
+                                Нет профиля? <Link href={'/registration'}>Зарегистрируйтесь</Link> прямо сейчас!
+                                </p>
+                        </Grid>
                     </div>
                 </Grid>
             </Grid>
         );
     };
-}
+};
 
 export default LoginPage;

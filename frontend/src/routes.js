@@ -1,5 +1,6 @@
 import * as React from 'react';
 import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 class Routes extends React.Component {
@@ -22,10 +23,13 @@ class Routes extends React.Component {
 
         return (
             <Switch>
-                <Route path='/' exact>
+                <Route path='/authorization' exact>
                      <LoginPage />
                 </Route>
-                <Redirect to='/' />
+                <Route path='/registration'>
+                    <RegistrationPage />
+                </Route>
+                <Redirect to='/authorization' />
             </Switch>
         );
     };
