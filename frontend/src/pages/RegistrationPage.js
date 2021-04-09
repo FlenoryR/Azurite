@@ -112,7 +112,7 @@ class RegistrationPage extends React.Component {
                                 <Grid item xs={12}>
                                     <FormControlLabel
                                         control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                        label="Я согласен (согласна) на обработку моих персональнных данных."
+                                        label="Я согласен(-на) на обработку персональнных данных."
                                     />
                                 </Grid>
                             </Grid>
