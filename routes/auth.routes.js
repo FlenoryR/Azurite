@@ -7,13 +7,19 @@ const User = require('../models/User');
 
 const router = Router();
 
-router.post('/registration', [ check('email', 'Ошибка! Введите корректную электронную почту!').isEmail() ], async (request, response) => {
+router.post(
+    '/registration',
+    [
+        check('email', 'Ошибка! Введите корректную электронную почту!').isEmail()
+    ],
+    async (request, response
+    ) => {
     try {
-        const validationErros = validationResult(request);
+        const validationErrors = validationResult(request);
 
-        if (!validationErros.isEmpty()) {
+        if (!validationErrors.isEmpty()) {
             return response.status(400).json({
-                validationErros: validationErros.array(),
+                validationErrors: validationErrors.array(),
                 message: 'Ошибка! Введены некорректные данные при попытке регистрации!'
             });
         };
@@ -53,13 +59,20 @@ router.post('/registration', [ check('email', 'Ошибка! Введите ко
     };
 });
 
-router.post('/authorization', [ check('email', 'Ошибка! Введите корректную электронную почту!').isEmail(), check('password', 'Ошибка! Введите пароль!').exists() ], async (request, response) => {
+router.post(
+    '/authorization',
+    [
+        check('email', 'Ошибка! Введите корректную электронную почту!').isEmail(),
+        check('password', 'Ошибка! Введите пароль!').exists()
+    ],
+    async (request, response
+    ) => {
     try {
-        const validationErros = validationResult(request);
+        const validationErrors = validationResult(request);
 
-        if (!validationErros.isEmpty()) {
+        if (!validationErrors.isEmpty()) {
             return response.status(400).json({
-                validationErrors: validationErros.array(),
+                validationErrors: validationErrors.array(),
                 message: 'Ошибка! Введены некорректные данные при попытке авторизации!'
             });
         };
