@@ -33,6 +33,6 @@ class Routes extends React.Component {
             </Switch>
         );
     };
-};
+}
 
 export default Routes;

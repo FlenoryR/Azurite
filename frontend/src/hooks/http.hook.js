@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-export const useHTTP = () => {
+export const useHTTP = (callback, deps) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -9,15 +9,15 @@ export const useHTTP = () => {
 
         try {
             const response = await fetch(url, {
-                method, 
+                method,
                 body,
                 headers
             });
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.message || 'Ошибка! Что-то пошло не так! ');
-            };
+                new Error(data.message || 'Ошибка! Что-то пошло не так! ');
+            }
 
             setLoading(false);
 
@@ -27,8 +27,8 @@ export const useHTTP = () => {
             setError(error.message);
 
             throw error;
-        };
-    });
+        }
+    }, deps);
 
     const clearError = () => { 
         setError(null); 

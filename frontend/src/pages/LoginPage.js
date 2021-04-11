@@ -53,7 +53,10 @@ class LoginPage extends React.Component {
                                         label={'Электронная почта'}
                                         name={'email'}
                                         autoComplete={'email'}
-                                        onChange={(event) => this.handleChange(event)}
+                                        onChange={
+                                            (event) =>
+                                                this.handleChange(event)
+                                        }
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -66,7 +69,10 @@ class LoginPage extends React.Component {
                                         label={'Пароль'}
                                         name={'password'}
                                         autoComplete={'password'}
-                                        onChange={(event) => this.handleChange(event)}
+                                        onChange={
+                                            (event) =>
+                                                this.handleChange(event)
+                                        }
                                     />
                                 </Grid>
                             </Grid>
@@ -91,6 +97,6 @@ class LoginPage extends React.Component {
             </Grid>
         );
     };
-};
+}
 
 export default LoginPage;

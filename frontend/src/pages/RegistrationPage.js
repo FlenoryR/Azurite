@@ -57,7 +57,10 @@ class RegistrationPage extends React.Component {
                                         id={'firstName'}
                                         label={'Имя'}
                                         autoFocus
-                                        onChange={(event) => this.handleChange(event)}
+                                        onChange={
+                                            (event) =>
+                                                this.handleChange(event)
+                                        }
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -69,7 +72,10 @@ class RegistrationPage extends React.Component {
                                         label={'Фамилия'}
                                         name={'lastName'}
                                         autoComplete={'lname'}
-                                        onChange={(event) => this.handleChange(event)}
+                                        onChange={
+                                            (event) =>
+                                                this.handleChange(event)
+                                        }
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -81,7 +87,10 @@ class RegistrationPage extends React.Component {
                                         label={'Электронная почта'}
                                         name={'email'}
                                         autoComplete={'email'}
-                                        onChange={(event) => this.handleChange(event)}
+                                        onChange={
+                                            (event) =>
+                                                this.handleChange(event)
+                                        }
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -94,7 +103,10 @@ class RegistrationPage extends React.Component {
                                         label={'Пароль'}
                                         name={'password'}
                                         autoComplete={'password'}
-                                        onChange={(event) => this.handleChange(event)}
+                                        onChange={
+                                            (event) =>
+                                                this.handleChange(event)
+                                        }
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -132,6 +144,6 @@ class RegistrationPage extends React.Component {
             </Grid>
         );
     };
-};
+}
 
 export default RegistrationPage;

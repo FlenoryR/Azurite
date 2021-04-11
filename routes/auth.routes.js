@@ -22,7 +22,7 @@ router.post(
                 validationErrors: validationErrors.array(),
                 message: 'Ошибка! Введены некорректные данные при попытке регистрации!'
             });
-        };
+        }
 
         const {
             firstName,
@@ -37,7 +37,7 @@ router.post(
             return response.status(400).json({
                 message: 'Ошибка! Такой пользователь уже существует!'
             });
-        };
+        }
 
         const encryptedPassword = await bcrypt.hash(password, 12);
         const registeredUser = new User({
@@ -56,7 +56,7 @@ router.post(
         return response.status(500).json({
             message: 'Ошибка! Попробуйте ещё раз.'
         });
-    };
+    }
 });
 
 router.post(
@@ -75,7 +75,7 @@ router.post(
                 validationErrors: validationErrors.array(),
                 message: 'Ошибка! Введены некорректные данные при попытке авторизации!'
             });
-        };
+        }
 
         const {
             password,
@@ -88,7 +88,7 @@ router.post(
             return response.status(400).json({
                 message: 'Ошибка! Попробуйте авторизоваться снова.'
             });
-        };
+        }
 
         const matchPassword = await bcrypt.compare(password, authorizedUser.password);
 
@@ -96,7 +96,7 @@ router.post(
             return response.status(400).json({
                 message: 'Ошибка! Попробуйте авторизоваться снова.'
             })
-        };
+        }
 
         const authorizedUserToken = jwt.sign(
             { authorizedUserId: authorizedUser.id },
@@ -113,7 +113,7 @@ router.post(
         return response.status(500).json({
             message: 'Ошибка! Попробуйте ещё раз.'
         });
-    };
+    }
 });
 
 module.exports = {
