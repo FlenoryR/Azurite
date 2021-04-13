@@ -90,7 +90,7 @@ class LoginPage extends React.Component {
                         <Grid item xs={12}>
                             <p className={'registration-message'}>
                                 Нет профиля? <Link href={'/registration'}>Зарегистрируйтесь</Link> прямо сейчас!
-                                </p>
+                            </p>
                         </Grid>
                     </div>
                 </Grid>
