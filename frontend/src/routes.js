@@ -16,7 +16,10 @@ class Routes extends React.Component {
         if (this.state.isAuthorized) {
             return(
                 <Switch>
-                    
+                    <Route path='/' exact>
+                        <h1>Hello, User!</h1>
+                    </Route>
+                    <Redirect to='/' />
                 </Switch>
             );
         };
