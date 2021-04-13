@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { AuthContext } from '../../../context/AuthContext';
-import { NavLink, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,7 +16,11 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        color: '#242424'
     },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+    }
 }));
 
 const Header = () => {
@@ -26,13 +29,13 @@ const Header = () => {
 
     const handleExit = () => {
         auth.logout();
-    }
+    };
 
     return (
         <div className={classes.root}>
-            <AppBar position='static'>
+            <AppBar position='fixed' className={classes.appBar} color={'#e0e0e0'}>
                 <Toolbar>
-                    <Typography variant='h6' className={classes.title}>
+                    <Typography variant='h5' className={classes.title}>
                         Azurite
                     </Typography>
                     <IconButton color='inherit' onClick={handleExit}>
