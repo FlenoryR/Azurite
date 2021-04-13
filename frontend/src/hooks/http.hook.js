@@ -35,9 +35,7 @@ export const useHTTP = (callback, deps) => {
         }
     }, deps);
 
-    const clearError = () => { 
-        setError(null); 
-    };
+    const clearError = useCallback(() => setError(null), []);
 
     return { loading, error, clearError, request };
 };

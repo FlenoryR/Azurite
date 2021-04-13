@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -11,17 +11,24 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useHTTP } from '../hooks/http.hook';
+// import { useMessage } from '../hooks/message.hook'; 
 
 import '../css/RegistrationPage.css';
 
 const RegistrationPage = () => {
-    const { loading, error, request } = useHTTP();
+    // const message = useMessage();
+    const { loading, error, clearError, request } = useHTTP();
     const [form, setForm] = React.useState({
         firstName: '',
         lastName: '',
         password: '',
         email: ''
     });
+
+    // useEffect(() => {
+    //     message(error);
+    //     clearError();
+    // }, [error, message, clearError]);
 
     const handleChange = (event) => {
         setForm({
@@ -33,7 +40,6 @@ const RegistrationPage = () => {
     const handleSubmit = async () => {
         try {
             const data = await request('/api/auth/registration', 'POST', {...form});
-            console.log(data);
         } catch (error) {
             console.log(`Ошибка! ${error.message}`)
         };
