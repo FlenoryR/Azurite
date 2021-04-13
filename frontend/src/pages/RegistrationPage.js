@@ -11,12 +11,11 @@ import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useHTTP } from '../hooks/http.hook';
-// import { useMessage } from '../hooks/message.hook'; 
 
 import '../css/RegistrationPage.css';
+import { Link } from "@material-ui/core";
 
 const RegistrationPage = () => {
-    // const message = useMessage();
     const { loading, error, clearError, request } = useHTTP();
     const [form, setForm] = React.useState({
         firstName: '',
@@ -24,11 +23,6 @@ const RegistrationPage = () => {
         password: '',
         email: ''
     });
-
-    // useEffect(() => {
-    //     message(error);
-    //     clearError();
-    // }, [error, message, clearError]);
 
     const handleChange = (event) => {
         setForm({
@@ -42,7 +36,7 @@ const RegistrationPage = () => {
             const data = await request('/api/auth/registration', 'POST', {...form});
         } catch (error) {
             console.log(`Ошибка! ${error.message}`)
-        };
+        }
     };
 
     return(
@@ -152,6 +146,11 @@ const RegistrationPage = () => {
                             Регистрация
                         </Button>    
                     </form>
+                    <Grid item xs={12}>
+                        <p className={'authorization-message'}>
+                            Уже есть профиль? <Link href={'/authorization'}>Авторизуйтесь</Link> прямо сейчас!
+                        </p>
+                    </Grid>
                 </div>
             </Grid>
         </Grid>

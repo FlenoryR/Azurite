@@ -1,41 +1,32 @@
 import * as React from 'react';
+import PanelPage from './pages/PanelPage';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-class Routes extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isAuthorized: this.props.isAuthorized
-        };
-    };
-
-    render() {
-        if (this.state.isAuthorized) {
-            return(
-                <Switch>
-                    <Route path='/' exact>
-                        <h1>Hello, User!</h1>
-                    </Route>
-                    <Redirect to='/' />
-                </Switch>
-            );
-        };
-
-        return (
+const Routes = (isAuthorized) => {
+    if (isAuthorized) {
+        return(
             <Switch>
-                <Route path='/authorization' exact>
-                     <LoginPage />
+                <Route path='/' exact>
+                    <PanelPage />
                 </Route>
-                <Route path='/registration'>
-                    <RegistrationPage />
-                </Route>
-                <Redirect to='/authorization' />
+                <Redirect to='/' />
             </Switch>
         );
-    };
+    }
+
+    return (
+        <Switch>
+            <Route path='/authorization'>
+                 <LoginPage />
+            </Route>
+            <Route path='/registration'>
+                <RegistrationPage />
+            </Route>
+            <Redirect to='/authorization' />
+        </Switch>
+    );
 }
 
 export default Routes;

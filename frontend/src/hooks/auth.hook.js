@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 
-export const useAuth = () => {
+export const useAuth = (callback, deps) => {
     const [authorizedUserToken, setUserToken] = useState(null);
     const [authorizedUserId, setUserId] = useState(null);
 
@@ -11,14 +11,14 @@ export const useAuth = () => {
         localStorage.setItem('userData', JSON.stringify({
             authorizedUserId: id, authorizedUserToken: jwtToken
         }));
-    });
+    }, []);
 
     const logout = useCallback(() => {
         setUserToken(null);
         setUserId(null);
 
         localStorage.removeItem('userData');
-    });
+    }, []);
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('userData'));

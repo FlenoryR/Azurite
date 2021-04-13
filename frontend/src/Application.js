@@ -6,16 +6,15 @@ import { useAuth } from './hooks/auth.hook';
 
 const Application = () => {
   const { login, logout, authorizedUserToken, authorizedUserId } = useAuth();
-  const isAuthorized=!authorizedUserToken;
-  const routes = <Routes isAuthorized={isAuthorized} />;
+  const isAuthorized=!!authorizedUserToken;
 
   return(
     <AuthContext.Provider value={{
-      login, logout, authorizedUserToken, authorizedUserId
+      login, logout, authorizedUserToken, authorizedUserId, isAuthorized
     }}>
       <Router>
         <div className={'container'}>
-          {routes}
+          { Routes(isAuthorized) }
         </div>
       </Router>
     </AuthContext.Provider>

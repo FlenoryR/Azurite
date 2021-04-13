@@ -91,12 +91,13 @@ const LoginPage = () => {
                             style={{ margin: '24px 0 0 0' }}
                             onClick={() => handleLogin()}
                             className={'submit-button'}
+                            disabled={loading}
                         >
                             Авторизоваться
                         </Button>    
                     </form>
                     <Grid item xs={12}>
-                        <p className={'registration-message'}>
+                        <p className={'authorization-message'}>
                             Нет профиля? <Link href={'/registration'}>Зарегистрируйтесь</Link> прямо сейчас!
                         </p>
                     </Grid>
