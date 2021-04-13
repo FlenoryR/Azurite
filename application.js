@@ -9,6 +9,7 @@ const configuration = {
     'mongoURL': config.get('mongoURL')
 };
 
+application.use(express.json({ extended: true }));
 application.use('/api/auth/', router);
 
 mongo(configuration.mongoURL).then(() => {
