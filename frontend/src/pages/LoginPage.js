@@ -34,7 +34,14 @@ const LoginPage = () => {
     const handleLogin = async () => {
         try {
             const data = await request('/api/auth/authorization', 'POST', {...form});
-            auth.login(data.authorizedUserToken, data.authorizedUserId);
+
+            auth.login(
+                data.authorizedUserToken,
+                data.authorizedUserId,
+                data.firstName,
+                data.lastName,
+                data.email
+            );
 
             setEmptyFields(
                 Object.keys(form).map((key) => {

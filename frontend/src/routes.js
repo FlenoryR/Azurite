@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PanelPage from './pages/PanelPage';
+import MainPage from './pages/PanelPage';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -9,7 +9,7 @@ const Routes = (isAuthorized) => {
         return(
             <Switch>
                 <Route path='/' exact>
-                    <PanelPage />
+                    <MainPage />
                 </Route>
                 <Redirect to='/' />
             </Switch>

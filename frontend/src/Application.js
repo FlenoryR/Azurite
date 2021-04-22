@@ -5,12 +5,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { useAuth } from './hooks/auth.hook';
 
 const Application = () => {
-  const { login, logout, authorizedUserToken, authorizedUserId } = useAuth();
+  const { login, logout, authorizedUserToken, authorizedUserId, name, email } = useAuth();
   const isAuthorized=!!authorizedUserToken;
 
   return(
     <AuthContext.Provider value={{
-      login, logout, authorizedUserToken, authorizedUserId, isAuthorized
+      login, logout, authorizedUserToken, authorizedUserId, isAuthorized, name, email
     }}>
       <Router>
         <div className={'container'}>

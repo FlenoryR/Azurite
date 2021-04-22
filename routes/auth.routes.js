@@ -106,7 +106,10 @@ router.post(
 
         return response.json({
             authorizedUserToken: authorizedUserToken,
-            authorizedUserId: authorizedUser.id
+            authorizedUserId: authorizedUser.id,
+            firstName: authorizedUser.firstName,
+            lastName: authorizedUser.lastName,
+            email: authorizedUser.email
         });
 
     } catch (error) {
