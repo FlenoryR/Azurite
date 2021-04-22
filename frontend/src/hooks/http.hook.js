@@ -18,10 +18,11 @@ export const useHTTP = (callback, deps) => {
                 body,
                 headers
             });
+
             const data = await response.json();
 
             if (!response.ok) {
-                new Error(data.message || 'Ошибка! Что-то пошло не так! ');
+                setError(data.message);
             }
 
             setLoading(false);

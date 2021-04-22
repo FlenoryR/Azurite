@@ -13,10 +13,12 @@ import { AuthContext } from '../context/AuthContext';
 
 import '../css/LoginPage.css';
 import { Link } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 const LoginPage = () => {
     const auth = useContext(AuthContext);
     const { loading, error, clearError, request } = useHTTP();
+    const [emptyFields, setEmptyFields] = React.useState([]);
     const [form, setForm] = React.useState({
         email: '',
         password: ''
@@ -33,6 +35,12 @@ const LoginPage = () => {
         try {
             const data = await request('/api/auth/authorization', 'POST', {...form});
             auth.login(data.authorizedUserToken, data.authorizedUserId);
+
+            setEmptyFields(
+                Object.keys(form).map((key) => {
+                    if (!form[key]) return key;
+                })
+            );
         } catch (error) {
             console.log(`Ошибка! ${error.message}`)
         }
@@ -54,6 +62,7 @@ const LoginPage = () => {
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
+                                    error={emptyFields.includes('email')}
                                     variant={'outlined'}
                                     required
                                     fullWidth
@@ -69,6 +78,7 @@ const LoginPage = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    error={emptyFields.includes('password')}
                                     variant={'outlined'}
                                     required
                                     fullWidth
@@ -101,6 +111,14 @@ const LoginPage = () => {
                             Нет профиля? <Link href={'/registration'}>Зарегистрируйтесь</Link> прямо сейчас!
                         </p>
                     </Grid>
+                    {error ? <Grid container>
+                        <Alert
+                            className={'alert-message'}
+                            severity={'error'}
+                        >
+                            { error }
+                        </Alert>
+                    </Grid> : null}
                 </div>
             </Grid>
         </Grid>

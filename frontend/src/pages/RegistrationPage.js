@@ -14,13 +14,16 @@ import { useHTTP } from '../hooks/http.hook';
 
 import '../css/RegistrationPage.css';
 import { Link } from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
 
 const RegistrationPage = () => {
     const { loading, error, clearError, request } = useHTTP();
+    const [emptyFields, setEmptyFields] = React.useState([]);
     const [form, setForm] = React.useState({
         firstName: '',
         lastName: '',
         password: '',
+        repeatPassword: '',
         email: ''
     });
 
@@ -34,10 +37,18 @@ const RegistrationPage = () => {
     const handleSubmit = async () => {
         try {
             const data = await request('/api/auth/registration', 'POST', {...form});
+
+            setEmptyFields(
+                Object.keys(form).map((key) => {
+                    if (!form[key]) return key;
+                })
+            );
         } catch (error) {
             console.log(`Ошибка! ${error.message}`)
         }
     };
+
+    console.log(emptyFields)
 
     return(
         <Grid container component={'main'} className={'registration-content'}>
@@ -55,6 +66,9 @@ const RegistrationPage = () => {
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    error={
+                                        emptyFields.includes('firstName')
+                                    }
                                     autoComplete={'fname'}
                                     name={'firstName'}
                                     variant={'outlined'}
@@ -71,6 +85,9 @@ const RegistrationPage = () => {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    error={
+                                        emptyFields.includes('lastName')
+                                    }
                                     variant={'outlined'}
                                     required
                                     fullWidth
@@ -86,6 +103,9 @@ const RegistrationPage = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    error={
+                                        emptyFields.includes('email')
+                                    }
                                     variant={'outlined'}
                                     required
                                     fullWidth
@@ -101,6 +121,9 @@ const RegistrationPage = () => {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    error={
+                                        emptyFields.includes('password')
+                                    }
                                     variant={'outlined'}
                                     required
                                     fullWidth
@@ -117,14 +140,21 @@ const RegistrationPage = () => {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    error={
+                                       emptyFields.includes('repeatPassword')
+                                    }
                                     variant={'outlined'}
                                     required
                                     fullWidth
                                     type={'password'}
-                                    id={'repeat-password'}
+                                    id={'repeatPassword'}
                                     label={'Подтвердите пароль'}
-                                    name={'repeat-password'}
-                                    autoComplete={'repeat-password'}
+                                    name={'repeatPassword'}
+                                    autoComplete={'repeatPassword'}
+                                    onChange={
+                                        (event) =>
+                                            handleChange(event)
+                                    }
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -151,6 +181,14 @@ const RegistrationPage = () => {
                             Уже есть профиль? <Link href={'/authorization'}>Авторизуйтесь</Link> прямо сейчас!
                         </p>
                     </Grid>
+                    {error ? <Grid container>
+                        <Alert
+                            className={'alert-message'}
+                            severity={'error'}
+                        >
+                            { error }
+                        </Alert>
+                    </Grid> : null}
                 </div>
             </Grid>
         </Grid>
